@@ -1,29 +1,36 @@
 ##1. Merges the training and the test sets to create one data set
+### read the train files and combine them
 subject_train<-read.table("./UCI HAR Dataset/train/subject_train.txt")
 y_train<-read.table("./UCI HAR Dataset/train/y_train.txt")
 x_train<-read.table("./UCI HAR Dataset/train/X_train.txt")
 trainData<-cbind(subject_train, y_train)
 trainData<-cbind(trainData, x_train)
 
+### read the test tiles and combine them
 subject_test<-read.table("./UCI HAR Dataset/test/subject_test.txt")
 y_test<-read.table("./UCI HAR Dataset/test/y_test.txt")
 x_test<-read.table("./UCI HAR Dataset/test/X_test.txt")
 testData<-cbind(subject_test, y_test)
 testData<-cbind(testData, x_test)
 
+### combine the train data with test data. 
+### Then rename the duplicate column names: Vsub for subject id, and VAct for activity id
 allData<-rbind(trainData, testData)
 names(allData)[1]<-"Vsub"
 names(allData)[2]<-"VAct"
 
 ##2. Extracts only the measurements on the mean and standard deviation for
 ##   each measurement
+### load in the variable names from features.txt file
 features<-read.table("./UCI HAR Dataset/features.txt", stringsAsFactors = FALSE)
 
+### find out the positions of all mean() and std() related variable names
 rowid1<-grep("mean()", features$V2, fixed=TRUE)
 rowid2<-grep("std()",features$V2, fixed=TRUE)
 rowid<-c(rowid1, rowid2)
 rowid<-sort(rowid)
 
+### extracts the observations about the mean and standard deviation
 library("dplyr")
 narrowData<-select(allData, Vsub, VAct, num_range("V", rowid))
 
