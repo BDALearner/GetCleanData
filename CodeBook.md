@@ -1,10 +1,10 @@
 ## Variables in the tidy dataset
 
-"Group.Activity"
+###"Group.Activity"
+Activity label
+###"Group.Subject"
 
-"Group.Subject"
-
-"tBodyAcc-mean()-X"
+###"tBodyAcc-mean()-X"
 "tBodyAcc-mean()-Y"
 "tBodyAcc-mean()-Z"
 "tBodyAcc-std()-X"
