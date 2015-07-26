@@ -1,7 +1,9 @@
 ## Variables in the tidy dataset
 
 "Group.Activity"
+
 "Group.Subject"
+
 "tBodyAcc-mean()-X"
 "tBodyAcc-mean()-Y"
 "tBodyAcc-mean()-Z"
